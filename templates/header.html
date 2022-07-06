@@ -1,0 +1,37 @@
+<header>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Головна сторінка</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutProject.html">Про проект</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/groupHistory.html">Історія гурту</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/albums.html">Альбоми</a>
+                    </li>
+                </ul>
+                {% if not current_user.is_authenticated %}
+                <!-- Button trigger    login -->
+                <div class="d-flex">
+                        <div>
+                            <a href="/login.html" class="btn btn-light ps-5 pe-5 me-2" tabindex="-1" role="button" aria-disabled="true">Вхід</a>
+                        </div>
+                </div>
+                {% else %}
+                <div class="d-flex">
+                    <div>
+                        <a href="/logout.html" class="btn btn-light ps-5 pe-5 me-2" tabindex="-1" role="button" aria-disabled="true">Вийти</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>

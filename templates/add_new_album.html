@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+{% include "header.html" %}
+<body>
+<div class="bg-light m-1"></div>
+<div class="container-fluid bg-dark" style="padding-top: 180px;padding-bottom: 180px">
+    <div style="background: gray" class="modal-dialog modal-lg modal-dialog-centered p-3 rounded bg-light">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="addCardLabel">Створення нового альбому</h1>
+            </div>
+            {% for category, message in get_flashed_messages(True) %}
+            <div class="flash {{category}}">
+                {{message}}
+            </div>
+            {% endfor %}
+            <form action="{{ url_for('add_new_album') }}" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nameAlbum" class="form-label">Назва альбому</label>
+                        <input type="text" class="form-control" id="nameAlbum" name="album_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageAlbum" class="form-label">Виберіть зображення альбому</label>
+                        <input class="form-control" type="file" id="imageAlbum" name="album_image" accept=".jpg">
+                        <div class="form-text">Зображення має бути 600х600 пікселів</div>
+                    </div>
+                    <div class="mb-3" id="trackDiv">
+                        <div class="mb-3" id="nameDiv">
+                            <label for="imageAlbum" class="form-label">Введіть назву трека</label>
+                            <input class="form-control" type="text" id="name_track" name="track_name1">
+                        </div>
+                        <label for="imageAlbum" class="form-label">Виберіть трек</label>
+                        <input class="form-control" type="file" id="track" name="track1" accept=".wav">
+                        <button type="button" class="btn btn-secondary" id="add_track_input">Додати трек</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Створити</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    let trackNumber = 2
+
+    function addOnInput(event){
+        let element = event.currentTarget.closest(".modal-body")
+        let newInputTrackElement = document.querySelector("#trackDiv").cloneNode(true)
+        let newInputNameElement = document.querySelector("#nameDiv").cloneNode(true)
+
+        newInputTrackElement.children[2].value = ""
+        newInputTrackElement.children[2].name = "track" + trackNumber
+        newInputTrackElement.children[2].oninput = addOnInput
+        newInputTrackElement.removeChild(newInputTrackElement.children[0])
+        newInputTrackElement.removeChild(newInputTrackElement.children[2])
+
+        newInputNameElement.children[1].value = ""
+        newInputNameElement.children[1].name = "track_name" + trackNumber
+
+        let button = document.createElement("button")
+        button.type = "button"
+        button.className = "btn btn-secondary"
+        button.innerHTML = "Видалити"
+        button.style.margin = "10px 0px 0px 0px"
+
+        button.onclick = (event) => {
+            event.currentTarget.closest(".mb-3").outerHTML = ""
+            trackNumber--
+        }
+
+        newInputTrackElement.insertBefore(newInputNameElement, newInputTrackElement.children[0])
+        newInputTrackElement.append(button)
+        element.append(newInputTrackElement)
+
+        trackNumber++
+    }
+
+    input = document.querySelector("#track")
+    button = document.querySelector("#add_track_input")
+
+    button.style.margin = "10px 0px 0px 0px"
+
+    input.oninput = addOnInput
+    button.onclick = addOnInput
+</script>
+</html>

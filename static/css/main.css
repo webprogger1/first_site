@@ -1,0 +1,26 @@
+h2{
+    text-indent: 1em;
+}
+.background{
+    background-image: url("../img/Валентин_Стрыкало_в_Зелёном_театр3е_3.png");
+}
+.index_nav_main_line{
+    color: white;
+}
+.gr{
+    color:grey;
+}
+
+.flash{
+    padding: 10px;
+}
+
+.flash.success{
+    border: 1px solid black;
+    background: #4CE972
+}
+
+.flash.error{
+    border: 1px solid black;
+    background: #F41E1E
+}

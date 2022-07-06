@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+    </style>
+</head>
+{% include "header.html" %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<body>
+<div class="row m-2 row-cols-2">
+    <!--Новые карточки должны добавляться именно под этот div, надо подумать как-->
+
+    {% set db_operation = DatabaseOperation(database.get_db()) %}
+    {% set albums = db_operation.get_albums() %}
+    {% for album in albums %}
+    <div class="col-auto m-0 p-1">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ url_for('static', filename=albums[album][2]) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{albums[album][1]}}</h5>
+                <div class="d-grid">
+                    <a href="albums/{{albums[album][1]}}" class="btn btn-primary">Розгорнути</a>
+                </div>
+                {% if current_user.is_authenticated %}
+                <div class="d-grid" style="margin: 10px 0px 0px 0px">
+                    <a href="albums/{{albums[album][1]}}_deleted" class="btn btn-primary">Видалити</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <!--А эта карточка-добавления, доступна только авторизированым-->
+    <div class="col-auto m-0 p-1">
+        <div class="card bg-warning" style="width: 18rem;">
+            <img src="{{ url_for('static', filename='img/карточкаТест.png') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Додати новий альбом</h5>
+                <div class="d-grid">
+                    <a href="add_new_album.html" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Додати</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

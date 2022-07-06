@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<style>
+    h3{
+        color:white;
+    }
+</style>
+{% include 'header.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<body class="bg-dark">
+<div class="bg-light m-1"style="padding-top:5px;"></div>
+<div class="container">
+    <div class="row" style="padding-top: 20px">
+        <div class="col">
+            <h3>
+                «Валентин Стрыкало» — український гурт, заснований 2010 року солістом Юрієм Капланом,
+                який здобув популярність після запису серії відеозвернень до зірок шоу-бізнесу від імені
+                наївного провінційного хлопця «Валентина Стрикала з села Бурильцева».
+                Створення гурту стало продовженням інтернет-мема.
+            </h3>
+            <h3>
+                Свій перший ролик – відеозвернення до В'ячеслава Малежика – Юрій Каплан опублікував на YouTube у березні 2008 року,
+                назвавшись «Валентином Стрикало з села Бурильцеве». За словами автора, це відео було знято під враженням від
+                схожого ролика студії My Duck's Vision, в якому Сем Нікель, один з акторів студії, також звертався до В'ячеслава Малежика.
+                Згодом Юрій також записав звернення до Потапа та Насті Каменських, Чаю вдвох,
+                та Сергія Звєрєва. Звернення до переможця Євробачення-2008 Діма Білана на YouTube протягом місяця з дня розміщення переглянули
+                близько 90 000 користувачів, а посилання на відео поширилися по всьому Рунету.
+            </h3>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="col rounded"style="padding-bottom:20px;">
+        <img class="img-fluid" src="{{ url_for('static', filename='img/Валентин_Стрыкало_в_Зелёном_театре_3.png') }}"alt="...">
+    </div>
+</div>
+<div class="bg-light m-1" style="padding-top:5px;"></div>
+</body>
+{% include 'footer.html' %}
+</html>

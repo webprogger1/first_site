@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<style>
+    h3{
+        color:white;
+    }
+</style>
+{% include "header.html" %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<body class="bg-dark">
+<div class="bg-light m-1"style="padding-top:5px;"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img alt="..." src="{{ url_for('static', filename='img/книги.png') }}">
+        </div>
+        <div class="col-7" style="padding-top: 80px;">
+            <h3>
+                Наш проект орієнтований на поширення та зберігання музичних творів такого відомого гурту як "Валентин Стрикало". Усі права, напевно захищені, а може ні =)
+            </h3>
+        </div>
+    </div>
+</div>
+<div style="padding-bottom: 270px;"></div>
+<div class="bg-light m-1" style="padding-top:5px;"></div>
+</body>
+{% include "footer.html" %}
+</html>
